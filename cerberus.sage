@@ -37,13 +37,14 @@ def build_matrix(n, sets):
 for sets in [goodsets1, goodsets2, goodsets3]:
     n = len(sets) + 3
     M = build_matrix(n, sets)
-    print("n is: ", n, "; max minors are: ", M.minors(n-3)) # print out the list of all minors
+    max_minors = M.minors(n-3)
+    print("n is ", n, " ; ", max_minors)
+    check_zero = [True if minor == 0 else False for minor in max_minors]
+    print(check_zero)
 
 # check that the max minors of the non-Cerberus sets is zero 
 badM = build_matrix(7, badsets1)
 max_minors = badM.minors(4)
-for minor in max_minors: 
-    print(minor.subs(x1==1, x2==2, x3==3, x4==4, x5==5, x6==6, x7==7)) # substituting x1 through x7 with these values. 
 check_zero = [True if minor == 0 else False for minor in max_minors]
 print(check_zero)
 
