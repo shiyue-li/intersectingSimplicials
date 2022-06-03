@@ -14,7 +14,6 @@ badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6], [x2, x3, x4, x
 
 def build_matrix(n, sets):
     # given n, a collection of size 4 sets in [n], build the matrix we want
-    R = PolynomialRing(RR, n, 'x')
     matrix = []
     for r in range(0, len(sets)):
         row = []
