@@ -19,28 +19,32 @@ def build_matrix(n, sets):
     for r in range(0, len(sets)):
         row = []
         current = sets[r]
+        sign = 1
         for c in range(0, n):
             varc = gens[c]
             if varc in current:
                 comp = [x for x in current if x != varc]
                 M = Matrix([[1, i, i^2] for i in comp])
                 det = M.determinant()
-                row.append(det)
+                row.append(sign*det)
+                sign = sign*(-1)
             else: 
                 row.append(0)
         matrix.append(row)
     return Matrix(matrix)
 
-# check that non-vanishing of Cerberus sets. 
+# check that non-vanishing of Cerberus sets holds.  
 for sets in [goodsets1, goodsets2, goodsets3]:
     n = len(sets) + 3
     M = build_matrix(n, sets)
     print("n is: ", n, "; max minors are: ", M.minors(n-3)) # print out the list of all minors
 
 # check that the max minors of the non-Cerberus sets is zero 
+badM = build_matrix(7, badsets1)
 max_minors = badM.minors(4)
 for minor in max_minors: 
     print(minor.subs(x1==1, x2==2, x3==3, x4==4, x5==5, x6==6, x7==7)) # substituting x1 through x7 with these values. 
 check_zero = [True if minor == 0 else False for minor in max_minors]
-print(check_zero) 
+print(check_zero)
+
     
