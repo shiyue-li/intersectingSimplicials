@@ -1,3 +1,5 @@
+# Authors: Matt Larson, Shiyue Li
+
 N = 10 # a big number 
 R = PolynomialRing(QQ, N, 'x')
 gen_list = list(R.gens())
