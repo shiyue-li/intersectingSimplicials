@@ -76,4 +76,17 @@ def minor_ratios(sets):
     g = gcd(max_minors)
     return [(m/g).factor() for m in max_minors]
 
-gcd_minors(s81)
+def minors_in_gcd(sets):
+    # find the smaller minors that show up in gcd
+    n = len(sets)+3
+    gcd = gcd_minors(sets)
+    result = []
+    for i in range(1, n-3):
+        i_minors = build_matrix(sets).minors(i)
+        result += [(i, m.factor()) for m in i_minors if (m!=0) and ((gcd/m) in R) ]
+    return result
+
+for minor in minors_in_gcd(s61):
+    print(minor)
+        
+    
