@@ -141,22 +141,20 @@ def which_minors(sets):
     gcd = gcd_minors(sets)
     result = []
     
-    for i in range(1, n-3): # strictly smaller minors than max
-        row_ind = Combinations(range(0, n-3), i).list()
-        col_ind = Combinations(range(0, n), i).list()
-        minor_ind = []
-        for pair in itertools.product(row_ind, col_ind): 
-            minor_ind.append(pair)
-        minors = build_matrix(sets).minors(i)
-        
-        result = []
-        for pair in itertools.product(minor_ind, minors):
-            m = pair[1]
-            if (m!=0) and ((gcd/m) in R):
-                result += [pair]
-    return result
+    i = n-4
+    row_ind = Combinations(range(0, n-3), i).list()
+    col_ind = Combinations(range(0, n), i).list()
+    minor_ind = []
+    for pair in itertools.product(row_ind, col_ind): 
+        minor_ind.append(pair)
+    minors = build_matrix(sets).minors(i)
+    
+    result = []
+    for pair in itertools.product(minor_ind, minors):
+        index = pair[0]
+        minor = pair[1]
+        if (minor!=0) and (gcd/minor in R):
+            print((index, minor.factor()))
 
-for minor in which_minors(s61):
-    print(minor)
-gcd_minors(s61)       
+which_minors(s61)       
    
