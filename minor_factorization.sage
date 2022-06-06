@@ -1,5 +1,3 @@
-# Authors: Matt Larson, Shiyue Li 
-
 N = 10 # a big number 
 R = PolynomialRing(QQ, N, 'x')
 gen_list = list(R.gens())
@@ -9,16 +7,24 @@ gens = [var(gen_string[i]) for i in range(1, len(gen_list))]
 # Cerberus
 s51 = [[x1, x2, x3, x4], [x1, x2, x3, x5]] 
 
-s61 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6]] # n = 6
-s62 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6]]
-s63 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x3, x5]]
+# n = 6
+s61 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6]] 
+# gcd: -(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x3 - x4)*(x5 - x6)
+s62 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6]] 
+# gcd: (x1 - x2)^2*(x1 - x3)^2*(x2 - x3)^2
+s63 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x3, x5]] 
+# gcd: (x1 - x2)^2*(x1 - x3)*(x1 - x5)*(x2 - x3)*(x2 - x5)
 
 
-s71 = [[x1, x2, x6, x7], [x4, x5, x6, x7], [x1, x2, x3, x5], [x1, x2, x3, x4]] # n = 7
-s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]]
+# n = 7
+s71 = [[x1, x2, x6, x7], [x4, x5, x6, x7], [x1, x2, x3, x5], [x1, x2, x3, x4]] 
+# gcd: -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7)
 
+s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]] 
+# gcd: (x1 - x2)*(x1 - x3)*(x1 - x5)*(x1 - x6)*(x2 - x3)^2*(x2 - x5)*(x3 - x5)*(x5 - x6)
 
-s81 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]] # n = 8
+# n = 8
+s81 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]] 
 s82 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]]
 s83 = [[x1, x3, x4, x6], [x5, x6, x7, x8], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x5, x7]]
 
@@ -27,8 +33,9 @@ s91 = [[x1, x5, x7, x9], [x1, x6, x7, x8], [x3, x5, x6, x7], [x1, x4, x5, x9], [
 # Non Cerberus 
 badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6], [x2, x3, x4, x5]] # 
 
-def build_matrix(n, sets):
+def build_matrix(sets):
     # given n, a collection of size 4 sets in [n], build the matrix we want
+    n = len(sets)+3
     matrix = []
     for r in range(0, len(sets)):
         row = []
@@ -48,13 +55,17 @@ def build_matrix(n, sets):
     return Matrix(matrix)
 
 
-def gcd_minors(n, sets):
-    M = build_matrix(n, sets)
+def gcd_minors(sets):
+    n = len(sets)+3
+    M = build_matrix(sets)
     max_minors = M.minors(n-3)
     return gcd(max_minors).factor()
 
-def minor_ratios(n, sets):
-    M = build_matrix(n, sets)
+def minor_ratios(sets):
+    n = len(sets)+3
+    M = build_matrix(sets)
     max_minors = M.minors(n-3)
     g = gcd(max_minors)
     return [(m/g).factor() for m in max_minors]
+
+gcd_minors(s81)
