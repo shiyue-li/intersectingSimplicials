@@ -134,7 +134,29 @@ def minors_in_gcd(sets):
         result += [(i, m.factor()) for m in i_minors if (m!=0) and ((gcd/m) in R) ]
     return result
 
-for minor in minors_in_gcd(s61):
-    print(minor)
-        
+
+def which_minors(sets):
+    # tells which (n-4)^2 minors realize the gcd
+    n = len(sets)+3
+    gcd = gcd_minors(sets)
+    result = []
     
+    for i in range(1, n-3): # strictly smaller minors than max
+        row_ind = Combinations(range(0, n-3), i).list()
+        col_ind = Combinations(range(0, n), i).list()
+        minor_ind = []
+        for pair in itertools.product(row_ind, col_ind): 
+            minor_ind.append(pair)
+        minors = build_matrix(sets).minors(i)
+        
+        result = []
+        for pair in itertools.product(minor_ind, minors):
+            m = pair[1]
+            if (m!=0) and ((gcd/m) in R):
+                result += [pair]
+    return result
+
+for minor in which_minors(s61):
+    print(minor)
+gcd_minors(s61)       
+   
