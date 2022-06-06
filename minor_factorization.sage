@@ -1,3 +1,5 @@
+# Authors: Matt Larson, Shiyue Li
+
 N = 10 # a big number 
 R = PolynomialRing(QQ, N, 'x')
 gen_list = list(R.gens())
@@ -21,6 +23,14 @@ s64 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x2, x3, x4, x5]]
 # n = 7
 s71 = [[x1, x2, x6, x7], [x4, x5, x6, x7], [x1, x2, x3, x5], [x1, x2, x3, x4]] 
 # gcd: -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7)
+# minors in gcd
+# (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
+# (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
+# (2, (x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)*(x4 - x5)*(x6 - x7))
+# (3, (x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7))
+# (3, (x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7))
+# (3, (x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7))
+# (3, -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7))
 
 s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]] 
 # gcd: (x1 - x2)*(x1 - x3)*(x1 - x5)*(x1 - x6)*(x2 - x3)^2*(x2 - x5)*(x3 - x5)*(x5 - x6)
@@ -34,6 +44,10 @@ s82 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [
 
 s83 = [[x1, x3, x4, x6], [x5, x6, x7, x8], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x5, x7]]
 # gcd : (x1 - x3)*(x1 - x5)^2*(x1 - x6)*(x1 - x7)*(x1 - x8)*(x3 - x6)*(x5 - x6)*(x5 - x7)^2*(x5 - x8)*(x6 - x7)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 72a20f7330e9bc614fc8531019caa09170e27c35
 
 s91 = [[x1, x5, x7, x9], [x1, x6, x7, x8], [x3, x5, x6, x7], [x1, x4, x5, x9], [x1, x2, x3, x9], [x1, x3, x4, x6]]
 
@@ -75,4 +89,17 @@ def minor_ratios(sets):
     g = gcd(max_minors)
     return [(m/g).factor() for m in max_minors]
 
-gcd_minors(s81)
+def minors_in_gcd(sets):
+    # find the smaller minors that show up in gcd
+    n = len(sets)+3
+    gcd = gcd_minors(sets)
+    result = []
+    for i in range(1, n-3):
+        i_minors = build_matrix(sets).minors(i)
+        result += [(i, m.factor()) for m in i_minors if (m!=0) and ((gcd/m) in R) ]
+    return result
+
+for minor in minors_in_gcd(s61):
+    print(minor)
+        
+    
