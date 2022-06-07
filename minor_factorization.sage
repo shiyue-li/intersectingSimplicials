@@ -2,7 +2,7 @@
 
 import itertools
 
-N = 10 # a big number 
+N = 15 # a big number 
 R = PolynomialRing(QQ, N, 'x')
 gen_list = list(R.gens())
 gen_string = [str(i) for i in R.gens()]
@@ -83,7 +83,8 @@ s91 = [[x1, x5, x7, x9], [x1, x6, x7, x8], [x3, x5, x6, x7], [x1, x4, x5, x9], [
 
 
 # Non Cerberus 
-badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x3, x4, x6, x7], [x2, x3, x4, x5]] # 
+badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x3, x4, x6, x7], [x2, x3, x4, x5]] 
+badsets2 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x3, x4, x5], [x2, x3, x4, x5], [x5, x6, x7, x8]]
 
 def build_matrix(sets):
     # given n, a collection of size 4 sets in [n], build the matrix we want
