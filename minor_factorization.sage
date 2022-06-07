@@ -1,5 +1,7 @@
 # Authors: Matt Larson, Shiyue Li
 
+import itertools
+
 N = 10 # a big number 
 R = PolynomialRing(QQ, N, 'x')
 gen_list = list(R.gens())
@@ -28,6 +30,9 @@ s62 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6]]
 
 s63 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x3, x5]] 
 # gcd: (x1 - x2)^2*(x1 - x3)*(x1 - x5)*(x2 - x3)*(x2 - x5)
+
+s64 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x2, x3, x4, x5]]
+# gcd: (x1 - x2)*(x1 - x5)*(x2 - x3)*(x2 - x4)*(x2 - x5)*(x3 - x4)
 
 
 # n = 7
@@ -69,16 +74,16 @@ s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]]
 s81 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]]
 # gcd: (x1*x2*x3*x5^2 + x1*x2*x4*x5^2 - x1*x3*x4*x5^2 - x2*x3*x4*x5^2 + x1*x2*x3*x4*x6 - x1*x2*x3*x5*x6 - x1*x2*x4*x5*x6 + x3*x4*x5^2*x6 - x1*x2*x3*x5*x7 - x1*x2*x4*x5*x7 + x1*x3*x4*x5*x7 + x2*x3*x4*x5*x7 - x1*x2*x5^2*x7 + x3*x4*x5^2*x7 - x1*x3*x4*x6*x7 - x2*x3*x4*x6*x7 + x1*x2*x5*x6*x7 + x1*x3*x5*x6*x7 + x2*x3*x5*x6*x7 + x1*x4*x5*x6*x7 + x2*x4*x5*x6*x7 - x3*x4*x5*x6*x7 - x3*x5^2*x6*x7 - x4*x5^2*x6*x7 + x1*x2*x5*x7^2 - x3*x4*x5*x7^2 + x3*x4*x6*x7^2 - x1*x5*x6*x7^2 - x2*x5*x6*x7^2 + x5^2*x6*x7^2 - x1*x2*x3*x4*x8 + x1*x3*x4*x5*x8 + x2*x3*x4*x5*x8 - x1*x2*x5^2*x8 + x1*x2*x5*x6*x8 - x3*x4*x5*x6*x8 + x1*x2*x3*x7*x8 + x1*x2*x4*x7*x8 + x1*x2*x5*x7*x8 - x1*x3*x5*x7*x8 - x2*x3*x5*x7*x8 - x1*x4*x5*x7*x8 - x2*x4*x5*x7*x8 - x3*x4*x5*x7*x8 + x1*x5^2*x7*x8 + x2*x5^2*x7*x8 - x1*x2*x6*x7*x8 + x3*x4*x6*x7*x8 - x1*x5*x6*x7*x8 - x2*x5*x6*x7*x8 + x3*x5*x6*x7*x8 + x4*x5*x6*x7*x8 - x1*x2*x7^2*x8 + x3*x5*x7^2*x8 + x4*x5*x7^2*x8 - x5^2*x7^2*x8 + x1*x6*x7^2*x8 + x2*x6*x7^2*x8 - x3*x6*x7^2*x8 - x4*x6*x7^2*x8)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x3 - x4)*(x6 - x7)*(x7 - x8)
 
-s82 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]]
-# gcd : (x1*x2*x3*x5^2 + x1*x2*x4*x5^2 - x1*x3*x4*x5^2 - x2*x3*x4*x5^2 + x1*x2*x3*x4*x6 - x1*x2*x3*x5*x6 - x1*x2*x4*x5*x6 + x3*x4*x5^2*x6 - x1*x2*x3*x5*x7 - x1*x2*x4*x5*x7 + x1*x3*x4*x5*x7 + x2*x3*x4*x5*x7 - x1*x2*x5^2*x7 + x3*x4*x5^2*x7 - x1*x3*x4*x6*x7 - x2*x3*x4*x6*x7 + x1*x2*x5*x6*x7 + x1*x3*x5*x6*x7 + x2*x3*x5*x6*x7 + x1*x4*x5*x6*x7 + x2*x4*x5*x6*x7 - x3*x4*x5*x6*x7 - x3*x5^2*x6*x7 - x4*x5^2*x6*x7 + x1*x2*x5*x7^2 - x3*x4*x5*x7^2 + x3*x4*x6*x7^2 - x1*x5*x6*x7^2 - x2*x5*x6*x7^2 + x5^2*x6*x7^2 - x1*x2*x3*x4*x8 + x1*x3*x4*x5*x8 + x2*x3*x4*x5*x8 - x1*x2*x5^2*x8 + x1*x2*x5*x6*x8 - x3*x4*x5*x6*x8 + x1*x2*x3*x7*x8 + x1*x2*x4*x7*x8 + x1*x2*x5*x7*x8 - x1*x3*x5*x7*x8 - x2*x3*x5*x7*x8 - x1*x4*x5*x7*x8 - x2*x4*x5*x7*x8 - x3*x4*x5*x7*x8 + x1*x5^2*x7*x8 + x2*x5^2*x7*x8 - x1*x2*x6*x7*x8 + x3*x4*x6*x7*x8 - x1*x5*x6*x7*x8 - x2*x5*x6*x7*x8 + x3*x5*x6*x7*x8 + x4*x5*x6*x7*x8 - x1*x2*x7^2*x8 + x3*x5*x7^2*x8 + x4*x5*x7^2*x8 - x5^2*x7^2*x8 + x1*x6*x7^2*x8 + x2*x6*x7^2*x8 - x3*x6*x7^2*x8 - x4*x6*x7^2*x8)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x3 - x4)*(x6 - x7)*(x7 - x8)
-
-s83 = [[x1, x3, x4, x6], [x5, x6, x7, x8], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x5, x7]]
+s82 = [[x1, x3, x4, x6], [x5, x6, x7, x8], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x5, x7]]
 # gcd : (x1 - x3)*(x1 - x5)^2*(x1 - x6)*(x1 - x7)*(x1 - x8)*(x3 - x6)*(x5 - x6)*(x5 - x7)^2*(x5 - x8)*(x6 - x7)
 
 s91 = [[x1, x5, x7, x9], [x1, x6, x7, x8], [x3, x5, x6, x7], [x1, x4, x5, x9], [x1, x2, x3, x9], [x1, x3, x4, x6]]
+# gcd: (x1*x3*x4 - x1*x4*x5 - x1*x3*x6 + x1*x4*x6 - x3*x4*x6 + x3*x5*x6 - x1*x4*x7 + x1*x5*x7 - x3*x5*x7 + x4*x5*x7 + x3*x6*x7 - x5*x6*x7)*(x1 - x3)*(x1 - x4)*(x1 - x5)*(x1 - x6)*(x1 - x7)*(x1 - x9)^2*(x3 - x6)*(x3 - x9)*(x5 - x7)*(x5 - x9)*(x6 - x7)
+
+
 
 # Non Cerberus 
-badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6], [x2, x3, x4, x5]] # 
+badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x3, x4, x6, x7], [x2, x3, x4, x5]] # 
 
 def build_matrix(sets):
     # given n, a collection of size 4 sets in [n], build the matrix we want
