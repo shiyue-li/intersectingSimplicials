@@ -150,10 +150,8 @@ def which_minors(sets):
     minors = build_matrix(sets).minors(i)
     
     result = []
-    for pair in itertools.product(minor_ind, minors):
-        index = pair[0]
-        minor = pair[1]
-        if (minor!=0) and (gcd/minor in R):
+    for (index, minor) in zip(minor_ind, minors):
+        if gcd == minor or -gcd == minor:
             print((index, minor.factor()))
 
 which_minors(s61)       
