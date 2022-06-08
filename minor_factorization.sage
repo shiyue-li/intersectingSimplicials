@@ -14,6 +14,7 @@ s51 = [[x1, x2, x3, x4], [x1, x2, x3, x5]]
 # n = 6
 s61 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6]] 
 # gcd: -(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x3 - x4)*(x5 - x6)
+#deg = 2
 # (2, (x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x3 - x4)*(x5 - x6))
 # (2, -(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x3 - x4)*(x5 - x6))
 # (2, (x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x3 - x4)*(x5 - x6))
@@ -21,6 +22,7 @@ s61 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6]]
 
 s62 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6]] 
 # gcd: (x1 - x2)^2*(x1 - x3)^2*(x2 - x3)^2
+#deg = 1
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
@@ -30,14 +32,18 @@ s62 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6]]
 
 s63 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x3, x5]] 
 # gcd: (x1 - x2)^2*(x1 - x3)*(x1 - x5)*(x2 - x3)*(x2 - x5)
+#deg = 1
 
 s64 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x2, x3, x4, x5]]
 # gcd: (x1 - x2)*(x1 - x5)*(x2 - x3)*(x2 - x4)*(x2 - x5)*(x3 - x4)
+#deg = 1
+
 
 
 # n = 7
 s71 = [[x1, x2, x6, x7], [x4, x5, x6, x7], [x1, x2, x3, x5], [x1, x2, x3, x4]] 
 # gcd: -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7)
+#deg = 2
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
 # (2, (x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)*(x4 - x5)*(x6 - x7))
@@ -47,8 +53,9 @@ s71 = [[x1, x2, x6, x7], [x4, x5, x6, x7], [x1, x2, x3, x5], [x1, x2, x3, x4]]
 # (3, -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7))
 # -(x1*x2*x4 + x1*x2*x5 - x1*x4*x5 - x2*x4*x5 - x1*x2*x6 + x4*x5*x6 - x1*x2*x7 + x4*x5*x7 + x1*x6*x7 + x2*x6*x7 - x4*x6*x7 - x5*x6*x7)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x4 - x5)*(x6 - x7)
 
-s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]] 
-# gcd: (x1 - x2)*(x1 - x3)*(x1 - x5)*(x1 - x6)*(x2 - x3)^2*(x2 - x5)*(x3 - x5)*(x5 - x6)
+s72 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x4, x5, x7], [x2, x3, x4, x6]] 
+# gcd: (x1 - x2)*(x1 - x3)*(x1 - x4)*(x1 - x5)*(x2 - x3)^2*(x2 - x4)*(x3 - x4)*(x4 - x5)
+#deg  = 1
 # (1, (x1 - x2)*(x1 - x3)*(x2 - x3))
 # (1, (x1 - x5)*(x1 - x6)*(x5 - x6))
 # (1, -(x2 - x3)*(x2 - x5)*(x3 - x5))
@@ -70,21 +77,64 @@ s72 = [[x1, x2, x3, x6], [x1, x5, x6, x7], [x1, x2, x3, x5], [x2, x3, x4, x5]]
 # (3, (x1 - x2)*(x1 - x3)*(x1 - x5)*(x1 - x6)*(x2 - x3)^2*(x2 - x5)*(x3 - x5)*(x5 - x6))
 # (x1 - x2)*(x1 - x3)*(x1 - x5)*(x1 - x6)*(x2 - x3)^2*(x2 - x5)*(x3 - x5)*(x5 - x6)
 
+s73 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6], [x1, x2, x3, x7]]
+#gcd: (x1 - x2)^3*(x1 - x3)^3*(x2 - x3)^3
+#deg = 1
+
+s74 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x3, x5, x7]]
+#gcd: -(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x1 - x3)*(x1 - x5)*(x3 - x4)*(x3 - x5)*(x5 - x6)
+#deg = 2
+
+s75 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x5, x6, x7], [x2, x5, x6, x7]]
+#gcd: -(x1 - x2)^2*(x1 - x3)*(x1 - x5)*(x2 - x3)*(x2 - x5)*(x5 - x6)*(x5 - x7)*(x6 - x7)
+#deg = 1
+
+s76 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x6, x7], [x1, x5, x6, x7]]
+#gcd: (x1 - x2)^2*(x1 - x4)*(x1 - x6)*(x2 - x4)*(x2 - x6)*(x5 - x6)*(x5 - x7)*(x6 - x7)
+#deg = 1
+
+
 # n = 8
 s81 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]]
 # gcd: (x1*x2*x3*x5^2 + x1*x2*x4*x5^2 - x1*x3*x4*x5^2 - x2*x3*x4*x5^2 + x1*x2*x3*x4*x6 - x1*x2*x3*x5*x6 - x1*x2*x4*x5*x6 + x3*x4*x5^2*x6 - x1*x2*x3*x5*x7 - x1*x2*x4*x5*x7 + x1*x3*x4*x5*x7 + x2*x3*x4*x5*x7 - x1*x2*x5^2*x7 + x3*x4*x5^2*x7 - x1*x3*x4*x6*x7 - x2*x3*x4*x6*x7 + x1*x2*x5*x6*x7 + x1*x3*x5*x6*x7 + x2*x3*x5*x6*x7 + x1*x4*x5*x6*x7 + x2*x4*x5*x6*x7 - x3*x4*x5*x6*x7 - x3*x5^2*x6*x7 - x4*x5^2*x6*x7 + x1*x2*x5*x7^2 - x3*x4*x5*x7^2 + x3*x4*x6*x7^2 - x1*x5*x6*x7^2 - x2*x5*x6*x7^2 + x5^2*x6*x7^2 - x1*x2*x3*x4*x8 + x1*x3*x4*x5*x8 + x2*x3*x4*x5*x8 - x1*x2*x5^2*x8 + x1*x2*x5*x6*x8 - x3*x4*x5*x6*x8 + x1*x2*x3*x7*x8 + x1*x2*x4*x7*x8 + x1*x2*x5*x7*x8 - x1*x3*x5*x7*x8 - x2*x3*x5*x7*x8 - x1*x4*x5*x7*x8 - x2*x4*x5*x7*x8 - x3*x4*x5*x7*x8 + x1*x5^2*x7*x8 + x2*x5^2*x7*x8 - x1*x2*x6*x7*x8 + x3*x4*x6*x7*x8 - x1*x5*x6*x7*x8 - x2*x5*x6*x7*x8 + x3*x5*x6*x7*x8 + x4*x5*x6*x7*x8 - x1*x2*x7^2*x8 + x3*x5*x7^2*x8 + x4*x5*x7^2*x8 - x5^2*x7^2*x8 + x1*x6*x7^2*x8 + x2*x6*x7^2*x8 - x3*x6*x7^2*x8 - x4*x6*x7^2*x8)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x3 - x4)*(x6 - x7)*(x7 - x8)
+#deg = 3
 
-s82 = [[x1, x3, x4, x6], [x5, x6, x7, x8], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x5, x7]]
-# gcd : (x1 - x3)*(x1 - x5)^2*(x1 - x6)*(x1 - x7)*(x1 - x8)*(x3 - x6)*(x5 - x6)*(x5 - x7)^2*(x5 - x8)*(x6 - x7)
+s82 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x3, x5, x6], [x1, x4, x5, x8], [x2, x5, x6, x7]]
+# gcd : -(x1 - x2)*(x1 - x3)^2*(x1 - x4)*(x1 - x5)^2*(x2 - x3)*(x2 - x5)*(x2 - x6)*(x3 - x5)*(x4 - x5)*(x5 - x6)
+#deg = 1
 
+s83 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x3, x6], [x1, x2, x3, x7], [x1, x2, x3, x8]]
+#gcd : (x1 - x2)^4*(x1 - x3)^4*(x2 - x3)^4
+#deg = 1
+
+s84 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x2, x7, x8], [x5, x6, x7, x8]]
+#gcd = (x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1*x2*x5 + x1*x2*x6 - x1*x5*x6 - x2*x5*x6 - x1*x2*x7 + x5*x6*x7 - x1*x2*x8 + x5*x6*x8 + x1*x7*x8 + x2*x7*x8 - x5*x7*x8 - x6*x7*x8)*(x1 - x2)^2*(x3 - x4)*(x5 - x6)^2*(x7 - x8)
+#deg = 4
+
+s85 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x3, x5, x7], [x2, x4, x6, x8]]
+#gcd = -(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1 - x2)*(x1 - x3)*(x1 - x5)*(x2 - x4)*(x2 - x6)*(x3 - x4)*(x3 - x5)*(x4 - x6)*(x5 - x6)
+#deg = 2
+
+s86 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x5, x7, x8], [x2, x3, x7, x8]]
+#gcd = (x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1*x2*x3 - x1*x2*x5 - x1*x3*x5 + x2*x3*x5 - x2*x3*x7 + x1*x5*x7 - x2*x3*x8 + x1*x5*x8 - x1*x7*x8 + x2*x7*x8 + x3*x7*x8 - x5*x7*x8)*(x1 - x2)*(x1 - x5)*(x2 - x3)*(x3 - x4)*(x5 - x6)*(x7 - x8)
+#deg = 4
+
+s87 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x5, x7, x8], [x2, x6, x7, x8]]
+#(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1*x2*x5 - x1*x2*x6 + x1*x5*x6 - x2*x5*x6 - x1*x5*x7 + x2*x6*x7 - x1*x5*x8 + x2*x6*x8 + x1*x7*x8 - x2*x7*x8 + x5*x7*x8 - x6*x7*x8)*(x1 - x2)*(x1 - x5)*(x2 - x6)*(x3 - x4)*(x5 - x6)*(x7 - x8)
+#deg = 4
+#note the two irreducible factors
+
+#n=9
 s91 = [[x1, x5, x7, x9], [x1, x6, x7, x8], [x3, x5, x6, x7], [x1, x4, x5, x9], [x1, x2, x3, x9], [x1, x3, x4, x6]]
 # gcd: (x1*x3*x4 - x1*x4*x5 - x1*x3*x6 + x1*x4*x6 - x3*x4*x6 + x3*x5*x6 - x1*x4*x7 + x1*x5*x7 - x3*x5*x7 + x4*x5*x7 + x3*x6*x7 - x5*x6*x7)*(x1 - x3)*(x1 - x4)*(x1 - x5)*(x1 - x6)*(x1 - x7)*(x1 - x9)^2*(x3 - x6)*(x3 - x9)*(x5 - x7)*(x5 - x9)*(x6 - x7)
-
+#deg = 2
 
 
 # Non Cerberus 
 badsets1 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x3, x4, x6, x7], [x2, x3, x4, x5]] 
 badsets2 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x3, x4, x5], [x2, x3, x4, x5], [x5, x6, x7, x8]]
+badsets3 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x1, x2, x6, x7], [x1, x5, x6, x7]]
+
 
 def build_matrix(sets):
     # given n, a collection of size 4 sets in [n], build the matrix we want
