@@ -200,7 +200,31 @@ def which_minors(sets):
         if gcd == minor or -gcd == minor:
             print((index, minor.factor()))
 
-            
+#computes the (n-4) x (n-4) minors obtained by deleting some S_i and the rows corresponding to S_i
+#conjecturally determinant of any of these minors is the gcd of the minors
+def special_minors(sets):
+    n = len(sets) + 3
+    submatrices = []
+    M = build_matrix(sets)
+    for i in range(len(sets)):
+        rs = set(range(len(sets))).difference({i})
+        #makes set out of S_i
+        seti = []
+        for j in range(n):
+            if(gens[j] in sets[i]):
+                seti.append(j)
+        cs = set(range(n)).difference(set(seti))
+        submatrices.append(M.matrix_from_rows_and_columns(rs, cs))
+    return submatrices
+
+
+#computes the minimal polynomials of special minors
+def minimal_polynomials(sets):
+    L = special_minors(sets)
+    for i in range(len(sets)):
+        print(L[i].minimal_polynomial())
+
+
 def JF(sets):
     # gives the jordan forms of the (n-3)^2 submatrices. 
     n = len(sets)+3
