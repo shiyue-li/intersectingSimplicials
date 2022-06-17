@@ -90,7 +90,6 @@ s75 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x5, x6, x7], [x2, x5, x6, x7]]
 #deg = 1
 
 
-
 # n = 8
 s81 = [[x1, x2, x3, x4], [x1, x2, x3, x5], [x1, x2, x6, x7], [x3, x4, x7, x8], [x5, x6, x7, x8]]
 # gcd: (x1*x2*x3*x5^2 + x1*x2*x4*x5^2 - x1*x3*x4*x5^2 - x2*x3*x4*x5^2 + x1*x2*x3*x4*x6 - x1*x2*x3*x5*x6 - x1*x2*x4*x5*x6 + x3*x4*x5^2*x6 - x1*x2*x3*x5*x7 - x1*x2*x4*x5*x7 + x1*x3*x4*x5*x7 + x2*x3*x4*x5*x7 - x1*x2*x5^2*x7 + x3*x4*x5^2*x7 - x1*x3*x4*x6*x7 - x2*x3*x4*x6*x7 + x1*x2*x5*x6*x7 + x1*x3*x5*x6*x7 + x2*x3*x5*x6*x7 + x1*x4*x5*x6*x7 + x2*x4*x5*x6*x7 - x3*x4*x5*x6*x7 - x3*x5^2*x6*x7 - x4*x5^2*x6*x7 + x1*x2*x5*x7^2 - x3*x4*x5*x7^2 + x3*x4*x6*x7^2 - x1*x5*x6*x7^2 - x2*x5*x6*x7^2 + x5^2*x6*x7^2 - x1*x2*x3*x4*x8 + x1*x3*x4*x5*x8 + x2*x3*x4*x5*x8 - x1*x2*x5^2*x8 + x1*x2*x5*x6*x8 - x3*x4*x5*x6*x8 + x1*x2*x3*x7*x8 + x1*x2*x4*x7*x8 + x1*x2*x5*x7*x8 - x1*x3*x5*x7*x8 - x2*x3*x5*x7*x8 - x1*x4*x5*x7*x8 - x2*x4*x5*x7*x8 - x3*x4*x5*x7*x8 + x1*x5^2*x7*x8 + x2*x5^2*x7*x8 - x1*x2*x6*x7*x8 + x3*x4*x6*x7*x8 - x1*x5*x6*x7*x8 - x2*x5*x6*x7*x8 + x3*x5*x6*x7*x8 + x4*x5*x6*x7*x8 - x1*x2*x7^2*x8 + x3*x5*x7^2*x8 + x4*x5*x7^2*x8 - x5^2*x7^2*x8 + x1*x6*x7^2*x8 + x2*x6*x7^2*x8 - x3*x6*x7^2*x8 - x4*x6*x7^2*x8)*(x1 - x2)^2*(x1 - x3)*(x2 - x3)*(x3 - x4)*(x6 - x7)*(x7 - x8)
@@ -120,6 +119,10 @@ s87 = [[x1, x2, x3, x4], [x1, x2, x5, x6], [x3, x4, x5, x6], [x1, x5, x7, x8], [
 #(x1*x2*x3 + x1*x2*x4 - x1*x3*x4 - x2*x3*x4 - x1*x2*x5 + x3*x4*x5 - x1*x2*x6 + x3*x4*x6 + x1*x5*x6 + x2*x5*x6 - x3*x5*x6 - x4*x5*x6)*(x1*x2*x5 - x1*x2*x6 + x1*x5*x6 - x2*x5*x6 - x1*x5*x7 + x2*x6*x7 - x1*x5*x8 + x2*x6*x8 + x1*x7*x8 - x2*x7*x8 + x5*x7*x8 - x6*x7*x8)*(x1 - x2)*(x1 - x5)*(x2 - x6)*(x3 - x4)*(x5 - x6)*(x7 - x8)
 #deg = 4
 #note the two irreducible factors
+
+s88 = [[x1, x2, x3, x4], [x1, x5, x6, x7], [x1, x2, x5, x8], [x1, x3, x6, x8], [x1, x4, x7, x8]]
+
+#deg = 1
 
 
 
