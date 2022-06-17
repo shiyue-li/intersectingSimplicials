@@ -225,6 +225,14 @@ def minimal_polynomials(sets):
         print(L[i].minimal_polynomial())
 
 
+def minor_signs(sets):
+    L = special_minors(sets)
+    p = gcd_minors(sets)
+    for i in range(len(sets)):
+        r = L[i].det()/p
+        print(r.factor())
+
+
 def JF(sets):
     # gives the jordan forms of the (n-3)^2 submatrices. 
     n = len(sets)+3
