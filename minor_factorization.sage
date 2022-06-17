@@ -201,5 +201,28 @@ def which_minors(sets):
         if gcd == minor or -gcd == minor:
             print((index, minor.factor()))
 
-which_minors(s61)       
-   
+            
+def JF(sets):
+    # gives the jordan forms of the (n-3)^2 submatrices. 
+    n = len(sets)+3
+    gcd = gcd_minors(sets)
+    result = []
+    
+    i = n-3
+    row_ind = Combinations(range(0, n-3), i).list()
+    col_ind = Combinations(range(0, n), i).list()
+    minor_ind = []
+    for pair in itertools.product(row_ind, col_ind): 
+        minor_ind.append(pair)
+    
+    JFs = []
+    matrix = build_matrix(sets)
+    for pair in minor_ind:
+        submatrix = matrix[list(pair)[0], list(pair)[1]]
+        JFs.append(submatrix.jordan_form())
+    return JFs
+
+JF = JF(s51)
+for jf in JF:
+    print(jf)
+    
