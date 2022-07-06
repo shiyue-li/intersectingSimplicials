@@ -256,7 +256,28 @@ def JF(sets):
         JFs.append(submatrix.jordan_form())
     return JFs
 
-JF = JF(s51)
-for jf in JF:
-    print(jf)
-    
+def full_matrix(sets):
+    # given n, a collection of size 4 sets in [n], build the matrix we want
+    n = len(sets)+3
+    matrix = []
+    for r in range(0, len(sets)):
+        row = []
+        current = sets[r]
+        sign = 1
+        for c in range(0, n):
+            varc = gens[c]
+            if varc in current:
+                comp = [x for x in current if x != varc]
+                M = Matrix([[1, i, i^2] for i in comp])
+                det = M.determinant()
+                row.append(sign*det)
+                sign = sign*(-1)
+            else: 
+                row.append(0)
+        matrix.append(row)
+    for i in range(0, 3):
+        row = [x**i for x in gens[0:n]]
+        matrix.append(row)
+    return Matrix(matrix)
+ 
+full_matrix(s51).determinant().factor()
